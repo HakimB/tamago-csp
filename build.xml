@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<project name="TamagoCSP" default="makejar">
+  <description>
+    Projet permettant la generation des fichiers CSP
+  </description>
+  
+  <!-- ================================= 
+       target: init             
+       ================================= -->
+  <target name="init" description="--> affect les variables d'environnement">
+    <property environment="myenv" />
+    <property name="build" value="bin" />
+    <property name="source" value="src" />
+    
+    <property name="tamagoCC" value="../TamagoCC/distrib/tamagoCC.jar" />
+    <property name="tamago" value="../TamagoFramework/framework/dist/tamago.jar" />
+    <property name="tamagoCSP" value="tamagoCSP.jar" />
+
+    <property name="tamagoCCPath" value="../TamagoCC/" />
+    <property name="tamagoPath" value="../TamagoFramework/framework/" />
+    
+    <property name="javaclasspath" value="${tamago}:${tamagoCC}:${source}:${build}:${tamagoCCPath}/jars/openjgraph.jar:${tamagoCCPath}/jars/junit.jar" />
+    <property name="distrib" value="distrib" />
+    <property name="outdoc" value="doc" /> 
+  </target>
+
+  <!-- ==============================
+       target : all
+       ============================== -->
+  <target name="all">
+    <antcall target="clean" />
+    <antcall target="compile" />
+    <antcall target="run" />
+  </target>
+
+  <!-- - - - - - - - - - - - - - - - - - 
+       target: prepare                      
+       - - - - - - - - - - - - - - - - - -->
+  <target name="prepare" depends="init">
+    <mkdir dir="${build}" />
+    <mkdir dir="${distrib}" />
+  </target>
+
+  <target name="clean" depends="init">
+    <delete>
+      <fileset dir="${build}">
+	<include name="**/*.class" />
+	<exclude name="**/CVS" />
+      </fileset>
+    </delete>
+
+    <delete>
+      <fileset dir="${distrib}">
+	<include name="**/*.jar" />
+	<exclude name="**/CVS" />
+      </fileset>
+    </delete>
+  </target>
+
+  <target name="compile" depends="prepare">
+    <echo>===== ==== Compilation des Fichiers Sources vers le repertoire Build === =====</echo>
+    <javac srcdir="${source}" debug="no" destdir="${build}" classpath="${javaclasspath}" />
+    <echo>===== ==== Compilation TERMINE === =====</echo>
+  </target>
+
+  <target name="run" depends="compile">
+    <echo>===== === Lancement de l'application principale de TamagoCC === =====</echo>
+    <java classname="tamago.TamagoCSPMain" classpath="${javaclasspath}">
+      <arg value="-h" />
+    </java>
+    <echo>===== === Fin de l'application === =====</echo>
+  </target>
+
+  <target name="makejar" depends="compile">
+    <echo>===== === Creation du jar de TamagoCSP === =====</echo>
+    <jar destfile="${distrib}/${tamagoCSP}" excludes=".project,.classpath">
+      <fileset dir="${build}">
+		<exclude name=".project,.classpath,build.xml" />
+      </fileset>
+    </jar>
+    <echo>===== === Creation du jar TERMINE === =====</echo>
+  </target>
+  
+  <target name="doc" depends="init">
+    <echo>===== === Lancement de la generation de la Documentation=== =====</echo>
+    <javadoc destdir="${outdoc}" access="public"
+	     use="true" notree="false" nonavbar="false" noindex="false"
+	     splitindex="true" author="true" version="true"
+	     nodeprecatedlist="false" nodeprecated="false" 
+	     sourcepath="${source}:${staticsrc}"
+	     classpath="${javaclasspath}" doctitle="Documentation of TamagoCSP" >
+      <fileset dir="${source}/" includes="**/*.java"/>
+    </javadoc>
+    <echo>===== === Fin de la generation === =====</echo>
+  </target>
+
+
+</project>
