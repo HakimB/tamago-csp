@@ -76,7 +76,7 @@ public class Builderarray extends TamagoBuilder {
 		try {
 			TamagoBuilder tb = this.var.getElemByName(genNameIdx(var));
 			//return tb.getCSPvar(owner, null);
-			TamagoCCLogger.println(4, "ArrayBuilder: already exist index");
+			TamagoCCLogger.println(4, "ArrayBuilder: already exist index: "+TamagoCCMakeReadableGExpression.toString(var));
 			return tb;
 		}
 		catch(Exception runtime) {
