@@ -17,6 +17,7 @@ import tamagocc.generic.api.GExpression;
 import tamagocc.generic.api.GInLabel;
 import tamagocc.generic.api.GInState;
 import tamagocc.generic.api.GInteger;
+import tamagocc.generic.api.GIsBound;
 import tamagocc.generic.api.GLanguageExpr;
 import tamagocc.generic.api.GNil;
 import tamagocc.generic.api.GNoContract;
@@ -228,5 +229,10 @@ public class TamagoCSPFlatten implements TamagoCCGExpressionVisitor {
 	@Override
 	public Object visitInState(GInState giInState) throws TamagoCCException {
 		return giInState;
+	}
+	
+	@Override
+	public Object visitIsBound(GIsBound giIsBound) throws TamagoCCException {
+		return giIsBound;
 	}
 }
