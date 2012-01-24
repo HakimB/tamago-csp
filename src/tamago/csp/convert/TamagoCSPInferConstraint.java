@@ -70,6 +70,7 @@ import tamagocc.generic.api.GForallSet;
 import tamagocc.generic.api.GInLabel;
 import tamagocc.generic.api.GInState;
 import tamagocc.generic.api.GInteger;
+import tamagocc.generic.api.GIsBound;
 import tamagocc.generic.api.GLanguageExpr;
 import tamagocc.generic.api.GNil;
 import tamagocc.generic.api.GNoContract;
@@ -823,6 +824,12 @@ public class TamagoCSPInferConstraint {
 		public Object visitInState(GInState giInState) throws TamagoCCException {
 			throw new TamagoCCException("Unsupported element (@instate)");
 		}
+		
+		@Override
+		public Object visitIsBound(GIsBound giIsBound) throws TamagoCCException {
+			throw new TamagoCCException("Unsupported element (@isBound)");
+		}
+		
 	}// end inner class
 
 	/**
