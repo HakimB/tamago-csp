@@ -122,7 +122,6 @@ public class ABRNode extends BTreeNode {
 		try {
 			fg = new XGtC(node.left(false).depth(), new CSPinteger(0));
 		} catch (TamagoCSPException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		csp.addConstraint(fg);
@@ -131,7 +130,6 @@ public class ABRNode extends BTreeNode {
 		try {
 			csp.solve();
 		} catch (TamagoCSPException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		System.err.println(csp.toString());

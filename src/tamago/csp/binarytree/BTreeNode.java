@@ -339,7 +339,6 @@ public class BTreeNode extends DefaultCSPvar implements Obvar,CSPrepercussion {
 	 */
 	@Override
 	public boolean load(CSPAbstractDomain domain) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
@@ -348,8 +347,7 @@ public class BTreeNode extends DefaultCSPvar implements Obvar,CSPrepercussion {
 	 */
 	@Override
 	public void remove(CSPconst value) throws TamagoCSPException {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 	/**
@@ -357,8 +355,7 @@ public class BTreeNode extends DefaultCSPvar implements Obvar,CSPrepercussion {
 	 */
 	@Override
 	public void retrieve(Triplet triplet) throws TamagoCSPException {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
@@ -460,7 +457,6 @@ public class BTreeNode extends DefaultCSPvar implements Obvar,CSPrepercussion {
 		try {
 			fg = new XGtC(node.left(false).depth(), new CSPinteger(0));
 		} catch (TamagoCSPException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		csp.addConstraint(fg);
@@ -469,7 +465,6 @@ public class BTreeNode extends DefaultCSPvar implements Obvar,CSPrepercussion {
 		try {
 			csp.solve();
 		} catch (TamagoCSPException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		System.err.println(csp.toString());

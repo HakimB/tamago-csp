@@ -50,7 +50,7 @@ public class CompareStringvar implements Stringvar, CSPrepercussion {
 	private boolean filterComparable;
 	private boolean filterArgument;
 	private boolean filterParent;
-	private boolean filtrage;
+	//private boolean filtrage;
 
 	/**
 	 * 
@@ -360,7 +360,6 @@ public class CompareStringvar implements Stringvar, CSPrepercussion {
 			}
 			TamagoCCLogger.println(4, compare.toString());
 		} catch (Exception e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
@@ -435,7 +434,6 @@ public class CompareStringvar implements Stringvar, CSPrepercussion {
 			}
 			TamagoCCLogger.println(4, compare.toString());
 		} catch (Exception e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
@@ -477,7 +475,6 @@ public class CompareStringvar implements Stringvar, CSPrepercussion {
 						try {
 							new SPrintAutomaton(parent.getRegExp(),"p: entity apres modif");
 						} catch (Exception e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 					}
@@ -510,7 +507,6 @@ public class CompareStringvar implements Stringvar, CSPrepercussion {
 	 * @see tamago.csp.generic.CSPrepercussion#updateDomain(tamago.csp.generic.CSPvar)
 	 */
 	public void updateDomain(CSPvar v) throws TamagoCSPException {
-		// TODO Auto-generated method stub
 		// une modification de l'entier impose un changement dans le
 		if(filterArgument || filterComparable || filterParent)
 			return; // on evite les cycles
